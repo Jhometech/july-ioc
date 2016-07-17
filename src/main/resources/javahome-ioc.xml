@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<bean id="welcome" class="in.javahome.ioc.WelcomeBean" />
+
+	<bean id="eng" class="in.javahome.ioc.Engine" />
+
+	<bean id="car" class="in.javahome.ioc.Car">
+		<constructor-arg ref="eng" />
+	</bean>
+	
+	<bean id="car2" class="in.javahome.ioc.Car">
+		<constructor-arg ref="eng" />
+	</bean>
+
+	<bean id="a" class="in.javahome.ioc.A">
+		<property name="i" value="10" />
+		<property name="j" value="20.5" />
+		<property name="k" value="Java Home" />
+	</bean>
+
+	<bean id="b" class="in.javahome.ioc.B">
+		<property name="list">
+			<list>
+				<value>One</value>
+				<value>Two</value>
+				<value>Three</value>
+				<ref bean="eng" />
+				<value>123</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean class="in.javahome.ioc.C">
+		<constructor-arg value="Abc" type="String" index="0" />
+		<constructor-arg value="123" type="int" index="1" />
+	</bean>
+
+</beans>
