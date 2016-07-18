@@ -15,17 +15,22 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
-	<bean id="welcome" class="in.javahome.ioc.WelcomeBean" />
 
-	<bean id="eng" class="in.javahome.ioc.Engine" />
 
-	<bean id="car" class="in.javahome.ioc.Car">
-		<constructor-arg ref="eng" />
+	<bean id="welcome" class="in.javahome.ioc.WelcomeBean" 
+	init-method="myInit" destroy-method="myDestroy" 	/>
+
+
+
+
+
+	<bean id="engine" class="in.javahome.ioc.Engine"  depends-on="car"/>
+	<bean id="engine2" class="in.javahome.ioc.Engine" />
+
+	<bean id="car" class="in.javahome.ioc.Car" autowire="byName">
+		
 	</bean>
 	
-	<bean id="car2" class="in.javahome.ioc.Car">
-		<constructor-arg ref="eng" />
-	</bean>
 
 	<bean id="a" class="in.javahome.ioc.A">
 		<property name="i" value="10" />
@@ -39,7 +44,7 @@
 				<value>One</value>
 				<value>Two</value>
 				<value>Three</value>
-				<ref bean="eng" />
+				<ref bean="engine" />
 				<value>123</value>
 			</list>
 		</property>
@@ -49,5 +54,19 @@
 		<constructor-arg value="Abc" type="String" index="0" />
 		<constructor-arg value="123" type="int" index="1" />
 	</bean>
+	
+	
+	
+	<bean id="person" class="in.javahome.ioc.Person">
+			<property name="name" value="Prasad"/>
+			<property name="phone" value="9999999999"/>
+	</bean>
+	
+	<bean id="employee" class="in.javahome.ioc.Employee" parent="person">
+			<property name="empId" value="123ABC"/>
+			<!--  We are overriding name of parent-->
+			<property name="name" value="Java Home"/>
+	</bean>
+	
 
 </beans>
